@@ -1,0 +1,23 @@
+services:
+
+  inference:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: numee-inference:latest
+    env_file:
+      - .env
+    # Published only because this compose file runs the service on its own host.
+    # Bind to the private interface, or drop the mapping entirely and put the
+    # API on the same Docker network - it must not be reachable from the public
+    # internet.
+    ports:
+      - "127.0.0.1:8100:8100"
+    restart: always
+    deploy:
+      replicas: 1
+      resources:
+        limits:
+          # One model per replica plus its working set. Raise together with
+          # INFERENCE_MAX_CONCURRENCY.
+          memory: 4G

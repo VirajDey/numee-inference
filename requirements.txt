@@ -1,0 +1,26 @@
+# torch is NOT listed here on purpose - the Dockerfile installs the CPU-only
+# build from the PyTorch index first, which is roughly a tenth the size of the
+# default CUDA wheel. Add `torch==2.9.0` here if you deploy on a GPU node.
+fastapi==0.119.0
+uvicorn==0.37.0
+pydantic==2.12.2
+pydantic-settings==2.11.0
+python-dotenv==1.1.1
+tenacity==9.1.2
+
+# Embeddings
+sentence-transformers==5.1.2
+langchain-huggingface==0.3.1
+openai==2.3.0
+
+# Vector store
+qdrant-client==1.15.1
+
+# Document and spreadsheet loaders
+langchain-core==0.3.79
+langchain-community==0.3.31
+langchain-text-splitters==0.3.11
+pymupdf==1.26.5
+pandas==2.3.3
+openpyxl==3.1.5
+numpy==2.3.3
